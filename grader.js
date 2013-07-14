@@ -26,6 +26,7 @@ var program = require('commander');
 var cheerio = require('cheerio');
 var HTMLFILE_DEFAULT = "index.html";
 var CHECKSFILE_DEFAULT = "checks.json";
+var URL_DEFAULT = "http://limitless-dusk-7141.herokuapp.com";
 
 var assertFileExists = function(infile) {
     var instr = infile.toString();
@@ -63,6 +64,7 @@ var clone = function(fn) {
 
 if(require.main == module) {
     program
+        .option('-u, --url <url_link>', 'path to heroku url', URL_DEFAULT)
         .option('-c, --checks <check_file>', 'Path to checks.json', clone(assertFileExists), CHECKSFILE_DEFAULT)
         .option('-f, --file <html_file>', 'Path to index.html', clone(assertFileExists), HTMLFILE_DEFAULT)
         .parse(process.argv);
